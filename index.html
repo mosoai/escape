@@ -87,7 +87,6 @@
 <body>
 
 <h1>Geburtstags Escape-Room</h1>
-<p>Finde die richtige Zahlenkombination, um den nächsten Hinweis zu erhalten!</p>
 
 <div id="zahlenschloss">
     <input type="number" id="digit1" min="0" max="9" placeholder="0" maxlength="1" oninput="moveToNext(this, 'digit2')">
@@ -106,7 +105,18 @@
 </div>
 
 <footer>
-    Viel Spaß beim Entschlüsseln der Hinweise und Happy Birthday! 🎉
+<p>Finde die richtige Zahlenkombination, um den nächsten Hinweis zu erhalten!</p>
+    <p>Jeder Code ist wie ein Teil eines Schlüssels. Stell dir vor, dass jeder Schlüssel aus vier Buchstaben besteht. Um das nächste Rätsel zu lösen, brauchst du die letzten beiden Buchstaben des vorherigen Schlüssels und die ersten beiden Buchstaben des neuen Schlüssels.</p>
+
+<h3>Beispiel:</h3>
+<p></p>QR-Code 1: Scanne den Code ein und löse das Rätsel. Die Lösung lautet "ABCD".</p>
+
+<p>QR-Code 2: Du nimmst die letzten beiden Buchstaben von "ABCD" (CD) und fügst sie zu den ersten beiden Buchstaben des neuen Codes hinzu. Jetzt hast du "CDEF".</p>
+
+<p>So geht es weiter, bis du am Ende alle Rätsel gelöst und den Schatz gefunden hast!</p>
+
+<p><b>Wichtig:</b> Die Reihenfolge ist wichtig! Wenn du die Codes durcheinander bringst, funktioniert es nicht</p>
+    <p></p>Viel Spaß beim Entschlüsseln der Hinweise und Happy Birthday! 🎉</p>
 </footer>
 
 <script>
@@ -201,7 +211,7 @@ text: "Die Kammer des Wassers - Hinweis: Über dir ruht sie, die Kammer, die dei
 image: "https://example.com/5409.jpg "
 },
 "8123": {
-text: "Der Ort der Konzentration - Hinweis: Wo die Gedanken sich ordnen und die Arbeit ruht, liegt der Schlüssel zum nächsten Schritt. Schau genau dorthin, wo dein Fokus oft weilt, doch deine Hände selten suchen.",
+text: "Das mechanische Wunder - Hinweis: Hier, wo Technik zum Leben erwacht und neue Formen geboren werden, verbirgt sich der nächste Hinweis. Das Geheimnis liegt dort, wo die Schichten sich fügen.",
 image: "https://example.com/8123.jpg "
 }
 };
