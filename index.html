@@ -93,6 +93,7 @@
     <input type="number" id="digit1" min="0" max="9" placeholder="0">
     <input type="number" id="digit2" min="0" max="9" placeholder="0">
     <input type="number" id="digit3" min="0" max="9" placeholder="0">
+    <input type="number" id="digit4" min="0" max="9" placeholder="0"> <!-- Neues Eingabefeld für die vierte Ziffer -->
 </div>
 
 <button id="submit">Schloss öffnen</button>
@@ -110,25 +111,21 @@
 
 <script>
     const hints = {
-        "123": {
+        "1234": {
             text: "Super! Der erste Hinweis ist: Schau unter den Kuchen!",
             image: "https://example.com/kuchen.jpg"
         },
-        "456": {
+        "4567": {
             text: "Gut gemacht! Jetzt suche nach den Ballons im Wohnzimmer.",
             image: "https://example.com/ballons.jpg"
         },
-        "789": {
+        "7890": {
             text: "Fast da! Der nächste Hinweis befindet sich auf dem Geschenk.",
             image: "https://example.com/geschenk.jpg"
         },
-        "1234": {
-            text: "Genial! Jetzt suche nach den Knaben im Schrank.",
-            image: "https://example.com/knaben.jpg"
-        },
-        "5678": {
-            text: "Super! Der letzte Hinweis befindet sich auf dem Bildschirm.",
-            image: "https://example.com/bildschirm.jpg"
+        "1357": {
+            text: "Toll! Der letzte Hinweis ist: Überprüfe die Schublade.",
+            image: "https://example.com/schublade.jpg"
         }
     };
 
@@ -142,8 +139,9 @@
         const digit1 = document.getElementById('digit1').value;
         const digit2 = document.getElementById('digit2').value;
         const digit3 = document.getElementById('digit3').value;
+        const digit4 = document.getElementById('digit4').value;
 
-        const enteredCode = `${digit1}${digit2}${digit3}`;
+        const enteredCode = `${digit1}${digit2}${digit3}${digit4}`;
 
         if (hints[enteredCode]) {
             resultDiv.textContent = 'Richtige Kombination!';
@@ -158,6 +156,7 @@
                 document.getElementById('digit1').value = '';
                 document.getElementById('digit2').value = '';
                 document.getElementById('digit3').value = '';
+                document.getElementById('digit4').value = '';
             }, 30000);
         } else {
             resultDiv.textContent = 'Falsche Kombination, versuche es nochmal!';
