@@ -90,12 +90,12 @@
 <p>Finde die richtige Zahlenkombination, um den nächsten Hinweis zu erhalten!</p>
 
 <div id="zahlenschloss">
-    <input type="number" id="digit1" min="0" max="9" placeholder="0" maxlength="1" oninput="limitInput(this)">
-    <input type="number" id="digit2" min="0" max="9" placeholder="0" maxlength="1" oninput="limitInput(this)">
-    <input type="number" id="digit3" min="0" max="9" placeholder="0" maxlength="1" oninput="limitInput(this)">
-    <input type="number" id="digit4" min="0" max="9" placeholder="0" maxlength="1" oninput="limitInput(this)">
+    <input type="number" id="digit1" min="0" max="9" placeholder="0" maxlength="1" oninput="moveToNext(this, 'digit2')">
+    <input type="number" id="digit2" min="0" max="9" placeholder="0" maxlength="1" oninput="moveToNext(this, 'digit3')">
+    <input type="number" id="digit3" min="0" max="9" placeholder="0" maxlength="1" oninput="moveToNext(this, 'digit4')">
+    <input type="number" id="digit4" min="0" max="9" placeholder="0" maxlength="1" oninput="moveToNext(this, null)">
 </div>
-
+    
 <button id="submit">Schloss öffnen</button>
 
 <div id="result"></div>
@@ -110,93 +110,98 @@
 </footer>
 
 <script>
-function limitInput(input) {
+function moveToNext(input, nextId) {
     // Wenn der Wert länger als 1 Zeichen ist, setze ihn auf das erste Zeichen
     if (input.value.length > 1) {
         input.value = input.value.charAt(0);
+    }
+    
+    // Wenn eine Zahl eingegeben wurde, springe zum nächsten Eingabefeld
+    if (input.value.length === 1 && nextId) {
+        document.getElementById(nextId).focus();
     }
 }
 </script>
 <script>
     const hints = {
 "4823": {
-text: "Der Wächter aus dem Osten - Hinweis: Zwei stolze Wächter, alt und weise, ihre Herkunft fern, ihr Blick so starr. Wo sie stehen, wird Geschichte bewahrt, ihre Aufgabe war es, einst Paläste zu bewachen. Doch nun bewachen sie etwas, was du suchst. (Versteckt bei den zwei chinesischen Löwen-Statuen)",
+text: "Der Wächter aus dem Osten - Hinweis: Zwei stolze Wächter, alt und weise, ihre Herkunft fern, ihr Blick so starr. Wo sie stehen, wird Geschichte bewahrt, ihre Aufgabe war es, einst Paläste zu bewachen. Doch nun bewachen sie etwas, was du suchst.",
 image: "https://example.com/4823.jpg "
 },
 "1576": {
-text: "Die Erinnerung - Hinweis: Erinnere dich an ferne Orte, wo die Sonne über Zypressen glitt und das Meer in Blau schimmerte. Ein kleiner Hauch des Südens hält den Weg bereit, wo du dich oft entkleidest, wartet das nächste Puzzleteil. (Versteckt hinter dem Italien-Magneten an der Garderobe)",
+text: "Die Erinnerung - Hinweis: Erinnere dich an ferne Orte, wo die Sonne über Zypressen glitt und das Meer in Blau schimmerte. Ein kleiner Hauch des Südens hält den Weg bereit, wo du dich oft entkleidest, wartet das nächste Puzzleteil.",
 image: "https://example.com/1576.jpg "
 },
 "9341": {
-text: "Der Irische Traum - Hinweis: Im Herz einer Familie, deren Melodien einst die Welt eroberten, verborgen in silbernem Glanz, liegt der nächste Schritt. Such in den Erinnerungen an die Tage, als die Wände voller Lieder klangen. (Versteckt in der Kelly Family DVD-Hülle)",
+text: "Der Irische Traum - Hinweis: Im Herz einer Familie, deren Melodien einst die Welt eroberten, verborgen in silbernem Glanz, liegt der nächste Schritt. Such in den Erinnerungen an die Tage, als die Wände voller Lieder klangen. ",
 image: "https://example.com/9341.jpg "
 },
 "2087": {
-text: "Das Herz der Menschlichkeit - Hinweis: Inmitten vieler Gedanken und Geschichten liegt ein Werk, das vom Besonderen spricht. Seine Worte würdigen nicht das Alltägliche, sondern die, die leuchten, obwohl sie still sind. Ein Ort, der Wunderbare zelebriert, birgt das, was du suchst. (Versteckt im Buch „Wunderbare Menschen“)",
+text: "Das Herz der Menschlichkeit - Hinweis: Inmitten vieler Gedanken und Geschichten liegt ein Werk, das vom Besonderen spricht. Seine Worte würdigen nicht das Alltägliche, sondern die, die leuchten, obwohl sie still sind. Ein Ort, der Wunderbare zelebriert, birgt das, was du suchst.",
 image: "https://example.com/2087.jpg "
 },
 "3650": {
-text: "Der unsichtbare Freund - Hinweis: Flauschig und weich, stets still, ein treuer aber einsamer Gefährte, der wenig spricht. Doch unter ihm, wo du es nicht erwartest, ruht ein Hinweis, still und sicher. (Versteckt unter einem Plüschhasen)",
+text: "Der unsichtbare Freund - Hinweis: Flauschig und weich, stets still, ein treuer aber einsamer Gefährte, der wenig spricht. Doch unter ihm, wo du es nicht erwartest, ruht ein Hinweis, still und sicher. ",
 image: "https://example.com/3650.jpg "
 },
 "7194": {
-text: "Das Leuchten des Lichtes - Hinweis: Zwei Flammen, die nie brennen, doch ihr Glanz strahlt in warmem Farben. Dort, wo das Licht immer scheint, auch wenn keine Kerze flackert, findest du deinen Weg zum nächsten Ziel. (Versteckt hinter den zwei orangen Kerzenleuchtern im Wohnzimmer)",
+text: "Das Leuchten des Lichtes - Hinweis: Zwei Flammen, die nie brennen, doch ihr Glanz strahlt in warmem Farben. Dort, wo das Licht immer scheint, auch wenn keine Kerze flackert, findest du deinen Weg zum nächsten Ziel.",
 image: "https://example.com/7194.jpg "
 },
 "8462": {
-text: "Der Tropfen - Hinweis: Der Tropfen birgt oft Freude, manchmal Feierlichkeiten, doch heute birgt er mehr als nur Genuss. Dort, wo das Glas schwer ist und der Wein tief, ruht der nächste Hinweis. (Versteckt unter einer Flasche Rotwein)",
+text: "Der Tropfen - Hinweis: Der Tropfen birgt oft Freude, manchmal Feierlichkeiten, doch heute birgt er mehr als nur Genuss. Dort, wo das Glas schwer ist und der Wein tief, ruht der nächste Hinweis.",
 image: "https://example.com/8462.jpg "
 },
 "5038": {
-text: "Die Süße Versuchung - Hinweis: Von gar nicht mal so weit her, aus einem Land, das für seine Aromen bekannt ist, stammen diese kleinen Freuden. Inmitten der Süße findest du nicht nur Geschmack, sondern auch den Weg zum nächsten Ziel. (Versteckt in einer Schachtel mit Süßigkeiten aus Italien)",
+text: "Die Süße Versuchung - Hinweis: Von gar nicht mal so weit her, aus einem Land, das für seine Aromen bekannt ist, stammen diese kleinen Freuden. Inmitten der Süße findest du nicht nur Geschmack, sondern auch den Weg zum nächsten Ziel.",
 image: "https://example.com/5038.jpg "
 },
 "2749": {
-text: "Der verborgene Weg unter deinen Füßen - Hinweis: Du sitzt oft hier, denkst und liest, und doch, was unter dir ruht, bleibt unbeachtet. Blicke nach unten, dorthin, wo deine Schritte oft lautlos klingen. (Versteckt unter dem Kaffeetisch im Wohnzimmer)",
+text: "Der verborgene Weg unter deinen Füßen - Hinweis: Du sitzt oft hier, denkst und liest, und doch, was unter dir ruht, bleibt unbeachtet. Blicke nach unten, dorthin, wo deine Schritte oft lautlos klingen.",
 image: "https://example.com/2749.jpg "
 },
 "6185": {
-text: "Der tropische Schatz - Hinweis: In einer Welt der Kokospalmen und Tropenfrüchte wartet ein kleiner Schatz auf dich. Doch nicht in der Ferne, sondern in der Nische, wo du Vorräte für Tage aufbewahrst. (Versteckt unter der Kokosmilch-Dose in der Speise-Nische)",
+text: "Der tropische Schatz - Hinweis: In einer Welt der Kokospalmen und Tropenfrüchte wartet ein kleiner Schatz auf dich. Doch nicht in der Ferne, sondern in der Nische, wo du Vorräte für Tage aufbewahrst.",
 image: "https://example.com/6185.jpg "
 },
 "3920": {
-text: "Das Flimmern - Hinweis: Im Schatten des Flimmerns, wo Geschichten aufleuchten und dann wieder verblassen, findest du den nächsten Schritt. Er verbirgt sich dort, wo du deine Blicke ruhen lässt, wenn die Nacht hereinbricht. (Versteckt hinter dem Fernseher)",
+text: "Das Flimmern - Hinweis: Im Schatten des Flimmerns, wo Geschichten aufleuchten und dann wieder verblassen, findest du den nächsten Schritt. Er verbirgt sich dort, wo du deine Blicke ruhen lässt, wenn die Nacht hereinbricht.",
 image: "https://example.com/3920.jpg "
 },
 "7501": {
-text: "Der Raum der Spiele - Hinweis: Dort, wo die digitalen Abenteuer beginnen, versteckt sich das nächste Rätsel. Suche, wo die Pixel laufen und die Daumen regieren. (Versteckt unter der Spielkonsole)",
+text: "Der Raum der Spiele - Hinweis: Dort, wo die digitalen Abenteuer beginnen, versteckt sich das nächste Rätsel. Suche, wo die Pixel laufen und die Daumen regieren.",
 image: "https://example.com/7501.jpg "
 },
 "8647": {
-text: "Der Stahl des täglichen Lebens - Hinweis: In einem Raum der Ruhe hängt er, der kalte Stahl, der hilft, was nass ist, zu trocknen. Doch nicht auf den ersten Blick wirst du den nächsten Hinweis entdecken, sondern dort, wo das Metall mit dem Holz zusammentrifft. (Versteckt am Metall-Handtuchhalter im Bad)",
+text: "Der Stahl des täglichen Lebens - Hinweis: In einem Raum der Ruhe hängt er, der kalte Stahl, der hilft, was nass ist, zu trocknen. Doch nicht auf den ersten Blick wirst du den nächsten Hinweis entdecken, sondern dort, wo das Metall mit dem Holz zusammentrifft.",
 image: "https://example.com/8647.jpg "
 },
 "1293": {
-text: "Das Herz der Arbeit - Hinweis: Wo die Gedanken fließen und die Aufgaben erledigt werden, ruht der nächste Hinweis. Unter der Stätte des Fleißes, wo dein Kopf oft verweilt, wartet das Geheimnis. (Versteckt unter dem Arbeitsschreibtisch)",
+text: "Das Herz der Arbeit - Hinweis: Wo die Gedanken fließen und die Aufgaben erledigt werden, ruht der nächste Hinweis. Unter der Stätte des Fleißes, wo dein Kopf oft verweilt, wartet das Geheimnis.",
 image: "https://example.com/1293.jpg "
 },
 "4876": {
-text: "Der Duft des Unbekannten - Hinweis: In der Dunkelheit der Schublade, wo die Düfte aus fernen Ländern lagern, findest du den Schlüssel zur nächsten Frage. Öffne sie und folge der Spur des Rauches. (Versteckt in der Schublade mit den Räucherstäbchen im Wohnzimmer)",
+text: "Der Duft des Unbekannten - Hinweis: In der Dunkelheit der Schublade, wo die Düfte aus fernen Ländern lagern, findest du den Schlüssel zur nächsten Frage. Öffne sie und folge der Spur des Rauches.",
 image: "https://example.com/4876.jpg "
 },
 "2358": {
-text: "Die verborgene Kammer - Hinweis: Die Träume der Nacht werden hier verwahrt, in einer Kammer, die oft unbeachtet bleibt. Suche dort, wo du deine Schätze aufbewahrst, auf der linken Seite. (Versteckt in der linken Schublade im Schlafzimmer)",
+text: "Die verborgene Kammer - Hinweis: Die Träume der Nacht werden hier verwahrt, in einer Kammer, die oft unbeachtet bleibt. Suche dort, wo du deine Schätze aufbewahrst, auf der linken Seite.",
 image: "https://example.com/2358.jpg "
 },
 "9014": {
-text: "Das mechanische Wunder - Hinweis: Hier, wo Technik zum Leben erwacht und neue Formen geboren werden, verbirgt sich der nächste Hinweis. Das Geheimnis liegt dort, wo die Schichten sich fügen. (Versteckt im 3D-Drucker)",
+text: "Das mechanische Wunder - Hinweis: Hier, wo Technik zum Leben erwacht und neue Formen geboren werden, verbirgt sich der nächste Hinweis. Das Geheimnis liegt dort, wo die Schichten sich fügen.",
 image: "https://example.com/9014.jpg "
 },
 "3762": {
-text: "Das verborgene Alphabet - Hinweis: Ein Alphabet, das nicht von hier stammt, ruht auf deinem Tisch. Es birgt mehr als nur Buchstaben, sondern auch den Schlüssel zu deinem nächsten Schritt. (Versteckt unter der russischen Tastatur auf dem Schreibtisch)",
+text: "Das verborgene Alphabet - Hinweis: Ein Alphabet, das nicht von hier stammt, ruht auf deinem Tisch. Es birgt mehr als nur Buchstaben, sondern auch den Schlüssel zu deinem nächsten Schritt.",
 image: "https://example.com/3762.jpg "
 },
 "5409": {
-text: "Die Kammer des Wassers - Hinweis: Über dir ruht sie, die Kammer, die deine täglichen Bedürfnisse birgt. Doch diesmal birgt sie mehr als das. Ein Schatz ruht in der Höhe, die oft übersehen wird. (Versteckt in der obersten Schublade im Bad)",
+text: "Die Kammer des Wassers - Hinweis: Über dir ruht sie, die Kammer, die deine täglichen Bedürfnisse birgt. Doch diesmal birgt sie mehr als das. Ein Schatz ruht in der Höhe, die oft übersehen wird.",
 image: "https://example.com/5409.jpg "
 },
 "8123": {
-text: "Der Ort der Konzentration - Hinweis: Wo die Gedanken sich ordnen und die Arbeit ruht, liegt der Schlüssel zum nächsten Schritt. Schau genau dorthin, wo dein Fokus oft weilt, doch deine Hände selten suchen. (Versteckt auf dem Schreibtisch im kleinen Büro)",
+text: "Der Ort der Konzentration - Hinweis: Wo die Gedanken sich ordnen und die Arbeit ruht, liegt der Schlüssel zum nächsten Schritt. Schau genau dorthin, wo dein Fokus oft weilt, doch deine Hände selten suchen.",
 image: "https://example.com/8123.jpg "
 }
 };
