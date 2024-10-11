@@ -248,6 +248,14 @@ image: "https://example.com/8123.jpg "
         } else {
             resultDiv.textContent = 'Falsche Kombination, versuche es nochmal!';
             hintDiv.style.display = 'none';
+            setTimeout(() => {
+                hintDiv.style.display = 'none';
+                resultDiv.textContent = '';
+                document.getElementById('digit1').value = '';
+                document.getElementById('digit2').value = '';
+                document.getElementById('digit3').value = '';
+                document.getElementById('digit4').value = '';
+            }, 2000);
         }
     });
 </script>
