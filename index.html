@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape-Room Zahlenschloss</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffccff, #ffeecc);
+            text-align: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px;
+            color: #a64dff;
+            font-size: 3rem;
+        }
+
+        #zahlenschloss {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            text-align: center;
+            border: 2px solid #a64dff;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        #submit {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #a64dff;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        #submit:hover {
+            background-color: #b366ff;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        #hint {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .hidden-content {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .hidden-content img {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        footer {
+            margin-top: 100px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Geburtstags Escape-Room</h1>
+<p>Finde die richtige Zahlenkombination, um den nächsten Hinweis zu erhalten!</p>
+
+<div id="zahlenschloss">
+    <input type="number" id="digit1" min="0" max="9" placeholder="0">
+    <input type="number" id="digit2" min="0" max="9" placeholder="0">
+    <input type="number" id="digit3" min="0" max="9" placeholder="0">
+</div>
+
+<button id="submit">Schloss öffnen</button>
+
+<div id="result"></div>
+
+<div id="hint" class="hidden-content">
+    <p id="hintText"></p>
+    <img id="hintImage" src="" alt="Hinweisbild">
+</div>
+
+<footer>
+    Viel Spaß beim Entschlüsseln der Hinweise und Happy Birthday! 🎉
+</footer>
+
+<script>
+    const hints = {
+        "123": {
+            text: "Super! Der erste Hinweis ist: Schau unter den Kuchen!",
+            image: "https://example.com/kuchen.jpg"
+        },
+        "456": {
+            text: "Gut gemacht! Jetzt suche nach den Ballons im Wohnzimmer.",
+            image: "https://example.com/ballons.jpg"
+        },
+        "789": {
+            text: "Fast da! Der nächste Hinweis befindet sich auf dem Geschenk.",
+            image: "https://example.com/geschenk.jpg"
+        },
+        "1234": {
+            text: "Genial! Jetzt suche nach den Knaben im Schrank.",
+            image: "https://example.com/knaben.jpg"
+        },
+        "5678": {
+            text: "Super! Der letzte Hinweis befindet sich auf dem Bildschirm.",
+            image: "https://example.com/bildschirm.jpg"
+        }
+    };
+
+    const submitButton = document.getElementById('submit');
+    const resultDiv = document.getElementById('result');
+    const hintDiv = document.getElementById('hint');
+    const hintText = document.getElementById('hintText');
+    const hintImage = document.getElementById('hintImage');
+
+    submitButton.addEventListener('click', function () {
+        const digit1 = document.getElementById('digit1').value;
+        const digit2 = document.getElementById('digit2').value;
+        const digit3 = document.getElementById('digit3').value;
+
+        const enteredCode = `${digit1}${digit2}${digit3}`;
+
+        if (hints[enteredCode]) {
+            resultDiv.textContent = 'Richtige Kombination!';
+            hintText.textContent = hints[enteredCode].text;
+            hintImage.src = hints[enteredCode].image;
+            hintDiv.style.display = 'block';
+
+            // Verstecke den Hinweis wieder nach 30 Sekunden
+            setTimeout(() => {
+                hintDiv.style.display = 'none';
+                resultDiv.textContent = '';
+                document.getElementById('digit1').value = '';
+                document.getElementById('digit2').value = '';
+                document.getElementById('digit3').value = '';
+            }, 30000);
+        } else {
+            resultDiv.textContent = 'Falsche Kombination, versuche es nochmal!';
+            hintDiv.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+
+</html>
